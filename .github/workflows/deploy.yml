@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build:
 
@@ -14,5 +20,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Build and Deploy React app to GitHub Pages
-      uses: omkartapale/react-deployment-gh-pages@v1.0.0
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.1.0
+
+    - name: Install Packages
+      run: npm i
+      
+    - name: Run predeploy
+      run: npx predeploy
+
+    - name: run deploy
+      run: npx deploy
+
+    
