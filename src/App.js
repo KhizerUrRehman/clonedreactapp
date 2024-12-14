@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React wow grape
+          Learn React wow grape grape
         </a>
       </header>
     </div>
