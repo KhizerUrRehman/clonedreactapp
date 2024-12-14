@@ -30,9 +30,9 @@ jobs:
       run: npm i
       
     - name: Run predeploy
-      run: npx predeploy
+      run: npm run build
 
     - name: run deploy
-      run: npx deploy
+      run: npx gh-pages -d build
 
     
