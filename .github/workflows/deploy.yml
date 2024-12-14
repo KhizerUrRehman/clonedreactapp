@@ -6,10 +6,8 @@ on:
   pull_request:
     branches: [ "main" ]
 
-# Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: write
   pages: write
@@ -25,6 +23,7 @@ jobs:
 
     - name: Setup Node.js environment
       uses: actions/setup-node@v4.1.0
+      
 
     - name: Install Packages
       run: npm i
@@ -32,7 +31,10 @@ jobs:
     - name: Run predeploy
       run: npm run build
 
-    - name: run deploy
-      run: npx gh-pages -d build
+    - name: Configure Git
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
 
-    
+    - name: Deploy to GitHub Pages
+      run: npx gh-pages -d build
